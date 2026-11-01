@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
-import { Document, LineCounter, isMap, isNode, isScalar } from "yaml";
+import { Document, LineCounter, isMap, isNode, isScalar, isSeq } from "yaml";
 
 import {
   Attester,
@@ -385,10 +385,11 @@ export class Concept {
   }
 
   /**
-   * The file line (1-based) of a front matter key, or of a nested value (`["sources", 1, "resource"]`). Undefined
-   * when the key is not in the original front matter.
+   * The file position (1-based line and column) of a front matter key, or of a nested value
+   * (`["sources", 1, "resource"]`, the key of a mapping entry, the start of a list item). Undefined when it is not in
+   * the original front matter.
    */
-  lineOf(path: string | (string | number)[]): number | undefined {
+  positionOf(path: string | (string | number)[]): { line: number; column: number } | undefined {
     if (!this.document) return undefined;
     const keys = typeof path === "string" ? [path] : path;
     let node: unknown = this.document.contents;
@@ -399,16 +400,21 @@ export class Concept {
         if (!pair) return undefined;
         start = isNode(pair.key) ? pair.key.range?.[0] : undefined;
         node = pair.value;
-      } else if (node && typeof node === "object" && "items" in node && typeof key === "number") {
-        const items = (node as { items: unknown[] }).items;
-        node = items[key];
+      } else if (isSeq(node) && typeof key === "number") {
+        node = node.items[key];
         start = isNode(node) ? node.range?.[0] : undefined;
       } else {
         return undefined;
       }
     }
     if (start === undefined) return undefined;
-    return this.lineCounter.linePos(start).line + this.split.yamlLine - 1;
+    const pos = this.lineCounter.linePos(start);
+    return { line: pos.line + this.split.yamlLine - 1, column: pos.col };
+  }
+
+  /** The file line of a front matter key or nested value (see {@link Concept.positionOf}). */
+  lineOf(path: string | (string | number)[]): number | undefined {
+    return this.positionOf(path)?.line;
   }
 
   /** The number of lines of the file. */

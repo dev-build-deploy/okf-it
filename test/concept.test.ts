@@ -120,6 +120,10 @@ describe("§4.3 a concept bound to a resource", () => {
     expect(c.lineOf("generated")).toBe(7);
     expect(c.lineOf(["generated", "at"])).toBe(7);
     expect(c.lineOf("nope")).toBeUndefined();
+    const line7 = fixture("spec/4.3-orders.md").split("\n")[6];
+    expect(c.positionOf(["generated", "at"])).toEqual({ line: 7, column: line7.indexOf("at:") + 1 });
+    expect(c.positionOf(["tags", 1])).toEqual({ line: 6, column: 15 });
+    expect(c.positionOf(["type", "x"])).toBeUndefined();
     expect(c.lineOf(["tags", 5])).toBeUndefined();
   });
 });

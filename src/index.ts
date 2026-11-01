@@ -6,6 +6,18 @@
 export { Bundle, DirectoryNode, PathField, ReadOptions, ResolvedLink, createBundle, readBundle } from "./bundle";
 export { ATTESTED_COMPUTATION, Attribution, Concept, KNOWN_KEYS, parseConcept } from "./concept";
 export {
+  CheckOptions,
+  Diagnostic,
+  RULES,
+  Severity,
+  checkBundle,
+  checkConcept,
+  formatDiagnostics,
+  isConformant,
+  sortDiagnostics,
+  summarize,
+} from "./check";
+export {
   Actor,
   ActorKind,
   Attester,
