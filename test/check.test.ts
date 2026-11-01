@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+import * as fs from "fs";
 import * as path from "path";
 
 import { createBundle, readBundle } from "../src/bundle";
@@ -365,6 +366,13 @@ describe("output", () => {
       expect([code, ["error", "warning", "info"].includes(rule.severity)]).toEqual([code, true]);
       expect(rule.spec).toMatch(/^§\d+(\.\d+)?$/);
       expect(rule.summary.length).toBeGreaterThan(5);
+    }
+  });
+
+  test("docs/rules.md lists every rule with its severity and spec section", () => {
+    const doc = fs.readFileSync(path.join(__dirname, "..", "docs", "rules.md"), "utf8");
+    for (const [code, rule] of Object.entries(RULES)) {
+      expect(doc).toContain(`| \`${code}\` | ${rule.spec} | ${rule.summary} |`);
     }
   });
 
