@@ -37,6 +37,7 @@ export {
   titleFromFilename,
 } from "./fields";
 export { FrontMatterSplit, ParseProblem, splitFrontMatter } from "./frontmatter";
+export { GenerateIndexOptions, generateIndex, generateIndexes } from "./generate";
 export { CodeBlock, Footnote, Heading, ListItem, MarkdownLink, MarkdownScan, scanMarkdown } from "./markdown";
 export { Target, TargetKind, isAbsoluteUrl, normalizePath, relativePath } from "./paths";
 export {
@@ -53,3 +54,4 @@ export {
   parseIndex,
   parseLog,
 } from "./reserved";
+export { writeConcept } from "./write";

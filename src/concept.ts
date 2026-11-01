@@ -66,6 +66,8 @@ interface KeySpan {
   end: number;
   /** True when the value was written in flow style (`{ ... }` or `[ ... ]`). */
   flow: boolean;
+  /** For a flow value: true when written with inner spaces (`{ a: 1 }`), false for `[a, b]`. */
+  padded: boolean;
 }
 
 /** A footnote attribution (§5.1): a `[^label]` in the body and the `sources` entry it names. */
@@ -439,7 +441,9 @@ function keySpans(document: Document.Parsed, yaml: string): KeySpan[] {
       end = nl < 0 ? yaml.length : nl + 1;
     }
     const value = pair.value as { flow?: boolean } | null;
-    spans.push({ key, start, end, flow: Boolean(value && typeof value === "object" && value.flow) });
+    const flow = Boolean(value && typeof value === "object" && value.flow);
+    const padded = flow && valueRange !== undefined && /^[[{][ \t]/.test(yaml.slice(valueRange[0], valueRange[0] + 2));
+    spans.push({ key, start, end, flow, padded });
   }
   return spans;
 }
