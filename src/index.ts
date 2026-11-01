@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: MIT
  */
 
+export { Bundle, DirectoryNode, PathField, ReadOptions, ResolvedLink, createBundle, readBundle } from "./bundle";
 export { ATTESTED_COMPUTATION, Attribution, Concept, KNOWN_KEYS, parseConcept } from "./concept";
 export {
   Actor,
@@ -25,6 +26,7 @@ export {
 } from "./fields";
 export { FrontMatterSplit, ParseProblem, splitFrontMatter } from "./frontmatter";
 export { CodeBlock, Footnote, Heading, ListItem, MarkdownLink, MarkdownScan, scanMarkdown } from "./markdown";
+export { Target, TargetKind, isAbsoluteUrl, normalizePath, relativePath } from "./paths";
 export {
   INDEX_FILE,
   IndexEntry,
