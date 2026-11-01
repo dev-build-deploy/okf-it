@@ -1,9 +1,17 @@
 {
-  "extends": "@tsconfig/node20/tsconfig.json",
   "compilerOptions": {
+    "target": "ES2022",
+    "lib": ["ES2022"],
+    "module": "commonjs",
+    "moduleResolution": "node",
     "declaration": true,
     "outDir": "./lib",
-    "stripInternal": true
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "stripInternal": true,
+    "types": ["node", "jest"]
   },
   "include": ["src", "test"],
   "exclude": ["node_modules"]
