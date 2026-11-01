@@ -1,0 +1,34 @@
+Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: okf-it
+Upstream-Contact: Kevin de Jong <monkaii@hotmail.com>
+Source: https://github.com/dev-build-deploy/okf-it
+
+Files: lib/**
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: MIT
+
+Files: tsconfig*.json
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: CC0-1.0
+
+Files: package*.json
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: CC0-1.0
+
+Files: .github/.commit-me.json
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: CC0-1.0
+
+Files: test/fixtures/made-up/**
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: MIT
+
+Files: test/fixtures/bundles/**
+Copyright: 2026 Google LLC
+License: Apache-2.0
+Comment: Sample bundles copied unchanged from https://github.com/GoogleCloudPlatform/open-knowledge-format (bundles/), Apache-2.0.
+
+Files: test/fixtures/spec/**
+Copyright: 2026 Google LLC
+License: Apache-2.0
+Comment: Examples taken from the OKF v0.2 specification (SPEC.md, sections 4.3, 4.4, 8, 9, 10 and Appendix A) at https://github.com/GoogleCloudPlatform/open-knowledge-format, Apache-2.0.
