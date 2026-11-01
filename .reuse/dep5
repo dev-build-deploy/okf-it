@@ -19,10 +19,6 @@ Files: .github/.commit-me.json
 Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
 License: CC0-1.0
 
-Files: test/fixtures/made-up/**
-Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
-License: MIT
-
 Files: test/fixtures/bundles/**
 Copyright: 2026 Google LLC
 License: Apache-2.0

@@ -36,6 +36,9 @@
     "lib/**/*",
     "bin/*"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "engines": {
     "node": ">=20"
   },
