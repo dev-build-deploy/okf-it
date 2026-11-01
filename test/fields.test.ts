@@ -16,6 +16,7 @@ import {
   titleFromFilename,
   trustTierOf,
 } from "../src/fields";
+import * as okf from "../src";
 
 describe("timestamps (§5)", () => {
   test.each([
@@ -149,5 +150,21 @@ describe("helpers", () => {
     expect(deepEqual([1], { 0: 1 })).toBe(false);
     expect(deepEqual(null, {})).toBe(false);
     expect(deepEqual(new Date(0), new Date(1))).toBe(false);
+  });
+});
+
+describe("the package entry point", () => {
+  test("exports the raw-value helpers", () => {
+    const api: Record<string, unknown> = { ...okf };
+    for (const name of [
+      "normalizeVerified",
+      "trustTierOf",
+      "parseActor",
+      "parseTimestamp",
+      "isTimestamp",
+      "isIsoDate",
+    ]) {
+      expect([name, typeof api[name]]).toEqual([name, "function"]);
+    }
   });
 });

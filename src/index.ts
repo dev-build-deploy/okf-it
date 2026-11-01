@@ -32,9 +32,11 @@ export {
   Verification,
   isIsoDate,
   isTimestamp,
+  normalizeVerified,
   parseActor,
   parseTimestamp,
   titleFromFilename,
+  trustTierOf,
 } from "./fields";
 export { FrontMatterSplit, ParseProblem, splitFrontMatter } from "./frontmatter";
 export { GenerateIndexOptions, generateIndex, generateIndexes } from "./generate";
