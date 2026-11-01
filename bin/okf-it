@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+// SPDX-FileCopyrightText: 2026 Kevin de Jong <monkaii@hotmail.com>
+// SPDX-License-Identifier: MIT
+
+"use strict";
+
+const { main } = require("../lib/cli");
+
+process.exitCode = main(process.argv.slice(2), {
+  stdout: text => process.stdout.write(text),
+  stderr: text => process.stderr.write(text),
+});
