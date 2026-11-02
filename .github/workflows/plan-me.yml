@@ -1,0 +1,46 @@
+# SPDX-FileCopyrightText: 2026 Kevin de Jong <monkaii@hotmail.com>
+# SPDX-License-Identifier: CC0-1.0
+
+# The backlog on GitHub Issues + the "okf-it" project board (dev-build-deploy/plan-me; settings in .plan-me.json).
+# Pull requests move the issues they close (`Closes #n`, or the number in the branch name) to in-progress and, merged,
+# to done; closed issues unblock their dependents; the nightly run keeps the board consistent. Every run also checks
+# docs/decisions/ when there is one. The workflow's GITHUB_TOKEN can't write organisation Projects, so each run takes
+# a short-lived token from the org's GitHub App dev-build-deploy-plan-me (Issues read/write, Pull requests read,
+# organization Projects read/write): its Client ID in vars.PLAN_ME_APP_CLIENT_ID, its key in
+# secrets.PLAN_ME_APP_PRIVATE_KEY.
+# Pinned to plan-me v0.5.0: the issue forms, the Claude Code plugin check, the import fixes and the issue-description guard.
+name: Backlog
+on:
+  issues:
+    types: [opened, edited, labeled, reopened, closed]
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review, closed]
+  schedule:
+    - cron: "17 5 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.event.issue.number || github.run_id }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+  issues: write
+  pull-requests: read
+
+jobs:
+  plan-me:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - id: app-token
+        uses: actions/create-github-app-token@v3.3.0
+        with:
+          client-id: ${{ vars.PLAN_ME_APP_CLIENT_ID }}
+          private-key: ${{ secrets.PLAN_ME_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ github.event.repository.name }}
+      - uses: dev-build-deploy/plan-me@v0.5.0
+        with:
+          token: ${{ steps.app-token.outputs.token }}
+          config: .plan-me.json
