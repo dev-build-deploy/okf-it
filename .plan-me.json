@@ -1,0 +1,8 @@
+{
+  "repository": "dev-build-deploy/okf-it",
+  "version": ">=0.3.0",
+  "boards": {
+    "okf-it": "okf-it"
+  },
+  "defaultComponent": "okf-it"
+}

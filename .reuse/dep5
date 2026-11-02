@@ -28,3 +28,15 @@ Files: test/fixtures/spec/**
 Copyright: 2026 Google LLC
 License: Apache-2.0
 Comment: Examples taken from the OKF v0.2 specification (SPEC.md, sections 4.3, 4.4, 8, 9, 10 and Appendix A) at https://github.com/GoogleCloudPlatform/open-knowledge-format, Apache-2.0.
+
+Files: .plan-me.json
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: CC0-1.0
+
+Files: .claude/settings.json
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: CC0-1.0
+
+Files: .github/ISSUE_TEMPLATE/*
+Copyright: 2026 Kevin de Jong <monkaii@hotmail.com>
+License: CC0-1.0

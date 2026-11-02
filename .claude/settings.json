@@ -1,0 +1,17 @@
+{
+  "enabledPlugins": {
+    "commit-me@dev-build-deploy": true,
+    "reuse-me@dev-build-deploy": true,
+    "secret-me@dev-build-deploy": true,
+    "pull-me@dev-build-deploy": true,
+    "plan-me@dev-build-deploy": true
+  },
+  "extraKnownMarketplaces": {
+    "dev-build-deploy": {
+      "source": {
+        "source": "github",
+        "repo": "dev-build-deploy/claude-plugins"
+      }
+    }
+  }
+}
